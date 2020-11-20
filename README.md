@@ -4,6 +4,7 @@
 A react-native dropdown/picker/selector component for both Android & iOS.
 
 This is the most up to date fork of https://github.com/sohobloo/react-native-modal-dropdown and will be maintained. A discussion about that can be found here: https://github.com/sohobloo/react-native-modal-dropdown/issues/251
+Current version 0.7.5.
 
 ## Features
 - Pure JS.
