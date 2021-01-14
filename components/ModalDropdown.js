@@ -5,13 +5,10 @@ import {
   View,
   Text,
   TouchableWithoutFeedback,
-  TouchableNativeFeedback,
   TouchableOpacity,
-  TouchableHighlight,
   Modal,
   ActivityIndicator,
   FlatList,
-  Platform
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -88,7 +85,7 @@ export default class ModalDropdown extends Component {
     animated: true,
     showsVerticalScrollIndicator: true,
     keyboardShouldPersistTaps: 'never',
-    renderRowComponent: Platform.OS === 'ios' ? TouchableOpacity : TouchableHighlight,
+    renderRowComponent: TouchableOpacity,
     renderButtonComponent: TouchableOpacity,
   };
 
@@ -252,17 +249,19 @@ export default class ModalDropdown extends Component {
             'landscape-right',
           ]}
         >
-          <TouchableWithoutFeedback
-            accessible={accessible}
-            disabled={!showDropdown}
-            onPress={this._onModalPress}
-          >
-            <View style={styles.modal}>
-              <View style={[styles.dropdown, dropdownStyle, frameStyle]}>
-                {loading ? this._renderLoading() : this._renderDropdown()}
+          <View style={{flex: 1, backgroundColor: 'rgba(0,0,0,0.5)'}}>
+            <TouchableWithoutFeedback
+              accessible={accessible}
+              disabled={!showDropdown}
+              onPress={this._onModalPress}
+            >
+              <View style={styles.modal}>
+                <View style={[styles.dropdown, dropdownStyle, frameStyle]}>
+                  {loading ? this._renderLoading() : this._renderDropdown()}
+                </View>
               </View>
-            </View>
-          </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback>
+          </View>
         </Modal>
       );
     }
@@ -408,8 +407,8 @@ export default class ModalDropdown extends Component {
     }
 
     if (!multipleSelect &&
-        (!onDropdownWillHide || onDropdownWillHide() !== false)
-       ) {
+      (!onDropdownWillHide || onDropdownWillHide() !== false)
+    ) {
       this.setState({
         showDropdown: false,
       });
