@@ -130,7 +130,7 @@ export default class ModalDropdown extends Component {
   render() {
     return (
       <View {...this.props}>
-        {this._renderButton()}
+        {!this.state.showDropdown && this._renderButton()}
         {this._renderModal()}
       </View>
     );
@@ -330,6 +330,7 @@ export default class ModalDropdown extends Component {
       showsVerticalScrollIndicator,
       keyboardShouldPersistTaps,
       options,
+      children
     } = this.props;
 
     return (
@@ -343,6 +344,7 @@ export default class ModalDropdown extends Component {
         automaticallyAdjustContentInsets={false}
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         keyboardShouldPersistTaps={keyboardShouldPersistTaps}
+        ListHeaderComponent={children}
       />
     );
   }
